@@ -1,5 +1,6 @@
 import React from "react"
 
+// Header component with the title and logo
 export default function Header() {
     return (
         <header className="navbar">

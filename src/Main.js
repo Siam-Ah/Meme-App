@@ -1,14 +1,18 @@
 import React from "react"
 
+// Meme generator component
 export default function Meme() {
     
+    // State to manage the meme text and image
     const [meme, setMeme] = React.useState({
         topText: "",
         bottomText: "",
         randomImage: "http://i.imgflip.com/1bij.jpg" 
     })
+    // State to store all memes fetched from the API
     const [allMemes, setAllMemes] = React.useState()
 
+    // Fetch memes from the API when the component mounts
     React.useEffect(function() {
         console.log("Effect ran")
         fetch("https://api.imgflip.com/get_memes")
@@ -16,7 +20,7 @@ export default function Meme() {
             .then(data => setAllMemes(data.data.memes))
     }, [])
     
-    
+    // Function to get a random meme image from the fetched memes
     function getMemeImage() {
         const memesArray = allMemes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
@@ -28,6 +32,7 @@ export default function Meme() {
         
     }
     
+    // Function to handle changes in the meme text input fields
     function handleChange(event) {
         const {name, value} = event.target
         setMeme(prevMeme => ({
